@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functional Regression Project - MSDS 601</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f9fafb;
+      color: #222;
+      margin: 40px auto;
+      max-width: 850px;
+      padding: 0 20px;
+    }
+    h1, h2, h3 {
+      color: #00817b;
+    }
+    h1 {
+      text-align: center;
+      border-bottom: 3px solid #00817b;
+      padding-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 2.5em;
+    }
+    ul {
+      list-style-type: square;
+      margin-left: 25px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3em;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Weather Prediction Using Function-on-Function Functional Regression</h1>
+  <h3 style="text-align:center;">Tom Kovalcik, Kateryna Malneva, Paul Ng</h3>
+
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      Since the government recently cut the national weather service budget, we want to try to help.
+      We are trying to predict rainfall using temperature as the predictor.
+      As part of the project, we are trying to predict the response of mean daily temperature over 
+      the course of the year (a function) using daily mean temperature and daily mean precipitation 
+      (both functions) the predictors. 
+    </p>
+  </section>
+
+  <section id="why-not-linear">
+    <h2>Discussion of Basics – Why Not Just Linear Regression?</h2>
+    <p>
+      Linear Regression is a mathematical study of data analysis and prediction. 
+      Linear regression uses a set of scalar predictors to infer some conclusion on a scalar response variable. 
+      Functional regression is an extension of linear regression. The key difference between linear and functional
+      regression is that functional regression uses integration instead of summation. It's more of an umbrella 
+      term for various algorithms. In functional regression either the predictors or the response (or both) are a 
+      function (usually of time).
+    </p>
+    <p>
+      Functional regression allows better analysis and data prediction of one or multiple time series.
+      It enables precise and thorough prediction of continuous or time-related data.
+    </p>
+  </section>
+
+  <section id="what-is-fr">
+    <h2>What is Functional Regression?</h2>
+    <p>
+        Functional regression is a branch of <strong>Functional Data Analysis (FDA)</strong> that has received growing amounts of attention and development over the past decade.
+    </p>
+    <p>
+        According to the paper <em>“Functional Regression”</em> by <strong>Jeffrey S. Morris</strong>:
+    </p>
+    <blockquote style="font-style: italic; background-color: #f2f6fa; padding: 15px 20px; border-left: 4px solid #004b91; border-radius: 8px; margin: 20px 0;">
+        “Functional data analysis (FDA) involves the analysis of data whose ideal units of observation are functions defined on some continuous domain, and the observed data consist of a sample of functions taken from some population, sampled on a discrete grid.”
+    </blockquote>
+  <p>
+    In contrast to simple or multiple linear regression, where a given observation, <em>X<sub>i</sub></em>, is a single data point,
+    in functional regression, <em>X<sub>i</sub></em> refers to a function. In addition, the relationship between the response variable
+    and predictor variables is modeled over a continuous domain such as <strong>time</strong> or <strong>space</strong>.
+  </p>
+    <p>Three common functional regression models:</p>
+    <ul>
+      <li><strong>Scalar-on-function (SoFR):</strong> Scalar response, functional predictor</li>
+    <iframe 
+        src="func-sofr.html" 
+        width="100%" 
+        height="75" 
+        style="border:none; border-radius: 5px; box-shadow: 0 0 2px rgba(0,0,0,0.1);">
+    </iframe>
+    <p>
+        This type of functional regression involves regressing functional responses onto a set of scalar predictors. 
+        For example, we’d use this to predict total rainfall (scalar) if we had a weather related predictor(s) as function(s)/curve(s).
+        An example of this would be predicting average daily rainfall using hourly average temperature for a given location.
+    </p>
+      <li><strong>Function-on-scalar (FoSR):</strong> Functional response, scalar predictor</li>
+       <iframe 
+        src="func-fosr.html" 
+        width="100%" 
+        height="75" 
+        style="border:none; border-radius: 5px; box-shadow: 0 0 2px rgba(0,0,0,0.1);">
+    </iframe>
+    <p>
+        This type of functional regression involves regressing scalar responses onto a set of functional 
+        predictors. For example, we’d use this to predict the total rainfall curve (function) if we had a 
+        weather related predictor(s) as scalar(s). An example of this would be predicting hourly average 
+        temperature for a given location.
+    </p>
+      <li><strong>Function-on-function (FoFR):</strong> Both predictor and response are functions</li>
+       <iframe 
+        src="func-fofr.html" 
+        width="100%" 
+        height="75" 
+        style="border:none; border-radius: 5px; box-shadow: 0 0 2px rgba(0,0,0,0.1);">
+    </iframe>
+    <p>
+        This type of functional regression involves regressing functional responses onto a set of 
+        functional predictors. For example, we’d use this to predict the total rainfall curve (function) 
+        if we had a weather related predictor(s) as function(s)/curve(s).
+    </p>
+    <p>
+        For this project, we utilized function-on-function (FoFR) regression to predict average 
+        daily temperature and rainfall for 19 different locations within California.
+     </p>
+    </ul>
+
+  </section>
+
+  <section id="data">
+    <h2>Data</h2>
+
+    <p>
+        In the final version of this project, we largely used weather data — specifically
+        <strong>daily precipitation</strong> and <strong>daily average temperatures</strong> — for California from the
+        <a href="https://cimis.water.ca.gov/" target="_blank">California Irrigation Management Information System (CIMIS)</a> website.
+    </p>
+
+    <h3>Messy Data</h3>
+    <p>
+        Obtaining, cleaning, and formatting the data to be usable in the model proved to be a significant task that our team initially
+        thought would be trivial (classic!). We explored multiple data sources and initially planned to use
+        <strong>Fitbit time series health data</strong> to predict another health metric. Specifically, we wanted to use Fitbit data
+        (steps, calories, intensity) to predict total sleep minutes for various individuals.
+    </p>
+    <p>
+        However, this dataset ended up being difficult to format for use in the functional regression libraries we were testing.
+        Since this proved challenging, we decided to pivot and explore a different data source.
+    </p>
+
+    <h3>Synthetic Data</h3>
+    <p>
+        Inspired by other project teams using synthetic data generated with GenAI tools, we decided to explore this approach as well.
+        We saw it as a good starting point, since synthetic data tends to be well-formatted and easy to work with.
+        The idea was that once we confirmed the model worked with synthetic data, we could format the real data similarly.
+    </p>
+    <p>
+        We generated <strong>synthetic San Francisco weather data</strong> (daily precipitation and daily average temperatures)
+        spanning five years to help configure the model, using <strong>ChatGPT</strong> for data generation.
+    </p>
+
+    <h3>Final Data from CIMIS</h3>
+    <p>
+        While one teammate was working on getting the model to run with synthetic data, others were collecting real weather data.
+        We obtained weather data from the <strong>California Irrigation Management Information System (CIMIS)</strong>, part of the
+        California Department of Water Resources. One of our teammates had previously worked with this dataset as an energy consultant,
+        which helped streamline our data collection process.
+    </p>
+
+    <h3>API vs. Manually Downloading CSV Files</h3>
+    <p>
+        The CIMIS website provides a convenient user interface for manually downloading CSV files for various weather stations across California.
+        Initially, we used this manual approach to download about five datasets. Eventually, we looked into automating data collection using the CIMIS API.
+    </p>
+    <p>
+        While experimenting with the API in a Python Notebook, we discovered a <strong>1750-row limit per API call</strong>,
+        which was insufficient to cover five full years of data. This would require additional work to loop through multiple calls to collect everything.
+        For this project, manual downloading was more practical, but for larger-scale research,
+        automating data collection with the API would be far more efficient.
+    </p>
+    <section id="cimis">
+    <h2>CIMIS Station Reports</h2>
+    <img src="cimis.png" alt="Screenshot of data source" style="max-width:100%; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+    </section>
+</section>
+
+    <section id="model-implementation">
+  <h2>Model Implementation</h2>
+
+  <p>
+    We started off with an example model from the
+    <a href="https://fda.readthedocs.io/en/latest/" target="_blank">scikit-fda documentation</a>
+    that uses <strong>Neighbors Functional Regression</strong> (see reference #4). This model is more complex
+    than basic functional regression in that it incorporates a
+    <strong>K Nearest Neighbors (KNN)</strong> component. More on that later.
+  </p>
+  <h3>Functional Regression</h3>
+  <p>
+    As discussed above, the functional regression implemented in this project is a
+    <strong>function-on-function functional linear regression</strong>.
+    This means that both the predictor variables and response variables are functions.
+  </p>
+
+  <p>
+    The <code>scikit-fda</code> library uses the <strong>FDataGrid</strong> data structure to organize
+    the predictor variables into the <em>X</em> matrix. This differs from standard linear regression,
+    where the <em>X</em> matrix consists of scalar predictor values. In our case, each observation of
+    each predictor variable is a function representing the variation of mean daily temperatures or daily
+    precipitation values.
+  </p>
+
+  <h3>Smoothing of Functional Predictor Variables</h3>
+  <p>
+    The raw functions representing the variation in mean daily temperatures and daily precipitation
+    were initially noisy and jagged — not smooth. To address this, we applied
+    <strong>Fourier basis smoothing</strong> to produce smoother functions for the mean daily temperatures.
+    While this process reduces some nuance in the data, it creates smoother, more interpretable functions
+    that generalize yearly trends.
+  </p>
+
+  <p>
+    Fourier basis smoothing is appropriate for temperature data because daily temperatures follow a roughly
+    sinusoidal pattern throughout the year. This smoothing approach helps model the annual cycle of temperature
+    variation while filtering out high-frequency noise.
+  </p>
+
+  <p>
+    Additionally, we removed some extreme outlier values that were unlikely to be good predictors of future
+    averages. For example, a one-off heatwave or unusually heavy rainfall on a specific date would not be a
+    reliable predictor of typical future conditions. Since our goal is to predict the <em>average</em> future
+    day temperature or precipitation, removing these extreme values improves model stability and predictive
+    accuracy.
+  </p>
+
+  <h3>Aside on K Nearest Neighbors (KNN)</h3>
+  <p>
+    Since the example model already included the <strong>K Nearest Neighbors</strong> component, we decided to
+    retain it and learn more about how it contributes to functional regression. Although it wasn’t the main
+    focus of our project, we explored how this algorithm component affects the predictions.
+  </p>
+
+  <p>
+    The KNN component works by identifying predictor variables that are similar in value — the "neighbors" —
+    and averaging them together when computing the response variable. The <em>number of neighbors</em> parameter
+    determines how many adjacent data points influence a specific prediction. Adjusting this parameter changes
+    the model’s sensitivity and smoothness.
+  </p>
+</section>
+
+  </section>
+  <section id="plotly-basic">
+    <h2>Basic Analysis Visualization</h2>
+    <p>
+      Here we can see the interactive visualization of analyzing 6 weather stations in California.
+    </p>
+
+    <iframe 
+      src="simple-visual.html" 
+      width="100%" 
+      height="650" 
+      style="border:none; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+    </iframe>
+  </section>
+
+  <section id="plotly-visual">
+    <h2>Advanced Analysis Visualization</h2>
+    <p>
+      Explore our functional regression results from analyzing 57 weather stations interactively below.
+      You can zoom, pan, and hover to inspect detailed data.
+    </p>
+
+    <iframe 
+      src="in-depth-visual.html" 
+      width="100%" 
+      height="650" 
+      style="border:none; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+    </iframe>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://cimis.water.ca.gov/" target="_blank">California Irrigation Management Information System </a></li>
+      <li><a href="https://fda.readthedocs.io/en/latest/auto_tutorial/plot_basis_representation.html" target="_blank">FDA Tutorial on Basis Representation</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Functional_regression" target="_blank">Wikipedia </a></li>
+      <li><a href="https://fda.readthedocs.io/en/stable/auto_examples/plot_neighbors_functional_regression.html" target="_blank">FDA Neighbors Functional Regression </a></li>
+      <li><a href="https://research.fredhutch.org/content/dam/stripe/hsu/files/Di_II.pdf" target="_blank">Functional Linear Models </a></li>
+    </ul>
+
+  <footer>
+    <p>© 2025 MSDS 601 Functional Regression Group Project</p>
+  </footer>
+
+</body>
+</html>

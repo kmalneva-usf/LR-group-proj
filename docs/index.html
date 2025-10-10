@@ -47,7 +47,7 @@
 <body>
 
   <h1>Weather Prediction Using Function-on-Function Functional Regression</h1>
-  <h3>Tom Kovalcik, Kateryna Malneva, Paul Ng</h3>
+  <h3 style="text-align:center;">Tom Kovalcik, Kateryna Malneva, Paul Ng</h3>
 
   <section id="introduction">
     <h2>Introduction</h2>
@@ -63,9 +63,12 @@
   <section id="why-not-linear">
     <h2>Discussion of Basics – Why Not Just Linear Regression?</h2>
     <p>
-      Functional regression is an extension of linear regression. The key difference between linear and functional regression
-      is that functional regression uses integration instead of summation. It’s more of an umbrella term for various algorithms.
-      In functional regression, either the predictors or the response are a function (usually of time).
+      Linear Regression is a mathematical study of data analysis and prediction. 
+      Linear regression uses a set of scalar predictors to infer some conclusion on a scalar response variable. 
+      Functional regression is an extension of linear regression. The key difference between linear and functional
+      regression is that functional regression uses integration instead of summation. It's more of an umbrella 
+      term for various algorithms. In functional regression either the predictors or the response (or both) are a 
+      function (usually of time).
     </p>
     <p>
       Functional regression allows better analysis and data prediction of one or multiple time series.
@@ -75,11 +78,63 @@
 
   <section id="what-is-fr">
     <h2>What is Functional Regression?</h2>
+    <p>
+        Functional regression is a branch of <strong>Functional Data Analysis (FDA)</strong> that has received growing amounts of attention and development over the past decade.
+    </p>
+    <p>
+        According to the paper <em>“Functional Regression”</em> by <strong>Jeffrey S. Morris</strong>:
+    </p>
+    <blockquote style="font-style: italic; background-color: #f2f6fa; padding: 15px 20px; border-left: 4px solid #004b91; border-radius: 8px; margin: 20px 0;">
+        “Functional data analysis (FDA) involves the analysis of data whose ideal units of observation are functions defined on some continuous domain, and the observed data consist of a sample of functions taken from some population, sampled on a discrete grid.”
+    </blockquote>
+  <p>
+    In contrast to simple or multiple linear regression, where a given observation, <em>X<sub>i</sub></em>, is a single data point,
+    in functional regression, <em>X<sub>i</sub></em> refers to a function. In addition, the relationship between the response variable
+    and predictor variables is modeled over a continuous domain such as <strong>time</strong> or <strong>space</strong>.
+  </p>
     <p>Three common functional regression models:</p>
     <ul>
       <li><strong>Scalar-on-function (SoFR):</strong> Scalar response, functional predictor</li>
+    <iframe 
+        src="func-sofr.html" 
+        width="100%" 
+        height="650" 
+        style="border:none; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+    </iframe>
+    <p>
+        This type of functional regression involves regressing functional responses onto a set of scalar predictors. 
+        For example, we’d use this to predict total rainfall (scalar) if we had a weather related predictor(s) as function(s)/curve(s).
+        An example of this would be predicting average daily rainfall using hourly average temperature for a given location.
+    </p>
       <li><strong>Function-on-scalar (FoSR):</strong> Functional response, scalar predictor</li>
+       <iframe 
+        src="func-fosr.html" 
+        width="100%" 
+        height="650" 
+        style="border:none; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+    </iframe>
+    <p>
+        This type of functional regression involves regressing scalar responses onto a set of functional 
+        predictors. For example, we’d use this to predict the total rainfall curve (function) if we had a 
+        weather related predictor(s) as scalar(s). An example of this would be predicting hourly average 
+        temperature for a given location.
+    </p>
       <li><strong>Function-on-function (FoFR):</strong> Both predictor and response are functions</li>
+       <iframe 
+        src="func-fofr.html" 
+        width="100%" 
+        height="650" 
+        style="border:none; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+    </iframe>
+    <p>
+        This type of functional regression involves regressing functional responses onto a set of 
+        functional predictors. For example, we’d use this to predict the total rainfall curve (function) 
+        if we had a weather related predictor(s) as function(s)/curve(s).
+    </p>
+    <p>
+        For this project, we utilized function-on-function (FoFR) regression to predict average 
+        daily temperature and rainfall for 19 different locations within California.
+     </p>
     </ul>
 
     <h3>Guiding Questions</h3>

@@ -20,8 +20,8 @@ for col in df.columns[1:]:
 # Customize layout
 fig.update_layout(
     title="Weather Prediction Plot Using 57 Weather Stations",
-    xaxis_title="x",
-    yaxis_title="Predicted Rainfall",
+    xaxis_title="Time of the Year",
+    yaxis_title="Temperature in Farenheit",
     hovermode="x unified",
     template="plotly_white",
     showlegend=True,

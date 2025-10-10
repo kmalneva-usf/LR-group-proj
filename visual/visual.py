@@ -1,6 +1,6 @@
 import pandas as pd
 import plotly.graph_objects as go
-
+import plotly.io as pio
 # Load the CSV file
 df = pd.read_csv("y_test_vals_f5_n5_wide.csv")
 
@@ -30,3 +30,4 @@ fig.update_layout(
 
 # Show the interactive plot
 fig.show()
+pio.write_html(fig, "simple-visual.html")

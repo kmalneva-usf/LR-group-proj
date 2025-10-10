@@ -21,7 +21,7 @@ for col in df.columns[1:]:
 fig.update_layout(
     title="Weather Prediction Plot",
     xaxis_title="x",
-    yaxis_title="Rainfall",
+    yaxis_title="Predicted Rainfall",
     hovermode="x unified",
     template="plotly_white",
     showlegend=True,

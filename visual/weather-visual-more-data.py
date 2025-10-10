@@ -19,7 +19,7 @@ for col in df.columns[1:]:
 
 # Customize layout
 fig.update_layout(
-    title="Weather Prediction Plot",
+    title="Weather Prediction Plot Using 57 Weather Stations",
     xaxis_title="x",
     yaxis_title="Predicted Rainfall",
     hovermode="x unified",

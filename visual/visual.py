@@ -19,9 +19,9 @@ for col in df.columns[1:]:
 
 # Customize layout
 fig.update_layout(
-    title="Weather Prediction Plot",
+    title="Weather Prediction Plot Using 6 Stations",
     xaxis_title="x",
-    yaxis_title="Rainfall",
+    yaxis_title="Predicted Rainfall",
     hovermode="x unified",
     template="plotly_white",
     showlegend=True,

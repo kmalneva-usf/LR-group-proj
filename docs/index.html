@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functional Regression Project - MSDS 601</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f9fafb;
+      color: #222;
+      margin: 40px auto;
+      max-width: 850px;
+      padding: 0 20px;
+    }
+    h1, h2, h3 {
+      color: #004b91;
+    }
+    h1 {
+      text-align: center;
+      border-bottom: 3px solid #004b91;
+      padding-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 2.5em;
+    }
+    ul {
+      list-style-type: square;
+      margin-left: 25px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3em;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Functional Regression Project</h1>
+  <h3>MSDS 601 - Linear Regression Group Project</h3>
+
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      Since the government recently cut the national weather service budget, we want to try to help.
+      We are trying to predict rainfall using temperature as the predictor.
+      First we used synthetically generated data for San Francisco weather patterns.
+      Then we took real data from the California Irrigation Management System (CIMIS).
+      Initially we chose 5 weather stations going back 10 years.
+    </p>
+  </section>
+
+  <section id="why-not-linear">
+    <h2>Discussion of Basics – Why Not Just Linear Regression?</h2>
+    <p>
+      Functional regression is an extension of linear regression. The key difference between linear and functional regression
+      is that functional regression uses integration instead of summation. It’s more of an umbrella term for various algorithms.
+      In functional regression, either the predictors or the response are a function (usually of time).
+    </p>
+    <p>
+      Functional regression allows better analysis and data prediction of one or multiple time series.
+      It enables precise and thorough prediction of continuous or time-related data.
+    </p>
+  </section>
+
+  <section id="what-is-fr">
+    <h2>What is Functional Regression?</h2>
+    <p>Three common functional regression models:</p>
+    <ul>
+      <li><strong>Scalar-on-function (SoFR):</strong> Scalar response, functional predictor</li>
+      <li><strong>Function-on-scalar (FoSR):</strong> Functional response, scalar predictor</li>
+      <li><strong>Function-on-function (FoFR):</strong> Both predictor and response are functions</li>
+    </ul>
+
+    <h3>Guiding Questions</h3>
+    <ul>
+      <li>What does each type mean, and how would one determine which FR model to use?</li>
+      <li>What are the pros and cons of FR?</li>
+      <li>How does basis representation influence modeling?</li>
+    </ul>
+  </section>
+
+  <section id="example">
+    <h2>Example Dataset & Illustrations</h2>
+    <ul>
+      <li><strong>Synthetic weather data:</strong> Simulated San Francisco daily temperature and precipitation measurements over 5 years.</li>
+      <li><strong>CIMIS weather data:</strong> Real observations from 5 California weather stations, also spanning 5 years.</li>
+    </ul>
+
+    <h3>Ideas for Interactive Illustration</h3>
+    <ul>
+      <li>Compare different functional regression models on the same dataset.</li>
+      <li>Identify which model fits the data better — and why.</li>
+      <li>Allow changing model parameters to visualize their effects.</li>
+    </ul>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.kaggle.com/datasets/arashnic/fitbit/code" target="_blank">Kaggle: Fitbit Dataset</a></li>
+      <li><a href="https://fda.readthedocs.io/en/latest/auto_tutorial/plot_basis_representation.html" target="_blank">FDA Tutorial on Basis Representation</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 MSDS 601 Functional Regression Group Project</p>
+  </footer>
+
+</body>
+</html>

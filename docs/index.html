@@ -202,12 +202,69 @@
     </section>
 </section>
 
-    <h3>Ideas for Interactive Illustration</h3>
-    <ul>
-      <li>Compare different functional regression models on the same dataset.</li>
-      <li>Identify which model fits the data better — and why.</li>
-      <li>Allow changing model parameters to visualize their effects.</li>
-    </ul>
+    <section id="model-implementation">
+  <h2>Model Implementation</h2>
+
+  <p>
+    We started off with an example model from the
+    <a href="https://fda.readthedocs.io/en/latest/" target="_blank">scikit-fda documentation</a>
+    that uses <strong>Neighbors Functional Regression</strong> (see reference #4). This model is more complex
+    than basic functional regression in that it incorporates a
+    <strong>K Nearest Neighbors (KNN)</strong> component. More on that later.
+  </p>
+  <h3>Functional Regression</h3>
+  <p>
+    As discussed above, the functional regression implemented in this project is a
+    <strong>function-on-function functional linear regression</strong>.
+    This means that both the predictor variables and response variables are functions.
+  </p>
+
+  <p>
+    The <code>scikit-fda</code> library uses the <strong>FDataGrid</strong> data structure to organize
+    the predictor variables into the <em>X</em> matrix. This differs from standard linear regression,
+    where the <em>X</em> matrix consists of scalar predictor values. In our case, each observation of
+    each predictor variable is a function representing the variation of mean daily temperatures or daily
+    precipitation values.
+  </p>
+
+  <h3>Smoothing of Functional Predictor Variables</h3>
+  <p>
+    The raw functions representing the variation in mean daily temperatures and daily precipitation
+    were initially noisy and jagged — not smooth. To address this, we applied
+    <strong>Fourier basis smoothing</strong> to produce smoother functions for the mean daily temperatures.
+    While this process reduces some nuance in the data, it creates smoother, more interpretable functions
+    that generalize yearly trends.
+  </p>
+
+  <p>
+    Fourier basis smoothing is appropriate for temperature data because daily temperatures follow a roughly
+    sinusoidal pattern throughout the year. This smoothing approach helps model the annual cycle of temperature
+    variation while filtering out high-frequency noise.
+  </p>
+
+  <p>
+    Additionally, we removed some extreme outlier values that were unlikely to be good predictors of future
+    averages. For example, a one-off heatwave or unusually heavy rainfall on a specific date would not be a
+    reliable predictor of typical future conditions. Since our goal is to predict the <em>average</em> future
+    day temperature or precipitation, removing these extreme values improves model stability and predictive
+    accuracy.
+  </p>
+
+  <h3>Aside on K Nearest Neighbors (KNN)</h3>
+  <p>
+    Since the example model already included the <strong>K Nearest Neighbors</strong> component, we decided to
+    retain it and learn more about how it contributes to functional regression. Although it wasn’t the main
+    focus of our project, we explored how this algorithm component affects the predictions.
+  </p>
+
+  <p>
+    The KNN component works by identifying predictor variables that are similar in value — the "neighbors" —
+    and averaging them together when computing the response variable. The <em>number of neighbors</em> parameter
+    determines how many adjacent data points influence a specific prediction. Adjusting this parameter changes
+    the model’s sensitivity and smoothness.
+  </p>
+</section>
+
   </section>
   <section id="plotly-basic">
     <h2>Basic Analysis Visualization</h2>

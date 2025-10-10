@@ -145,13 +145,62 @@
     </ul>
   </section>
 
-  <section id="example">
-    <h2>Example Dataset & Illustrations</h2>
-    <ul>
-      <li><strong>Synthetic weather data:</strong> Simulated San Francisco daily temperature and precipitation measurements over 5 years.</li>
-      <li><strong>CIMIS weather data:</strong> Real observations from 5 California weather stations, also spanning 5 years.</li>
-    
-    </ul>
+  <section id="data">
+    <h2>Data</h2>
+
+    <p>
+        In the final version of this project, we largely used weather data — specifically
+        <strong>daily precipitation</strong> and <strong>daily average temperatures</strong> — for California from the
+        <a href="https://cimis.water.ca.gov/" target="_blank">California Irrigation Management Information System (CIMIS)</a> website.
+    </p>
+
+    <h3>Messy Data</h3>
+    <p>
+        Obtaining, cleaning, and formatting the data to be usable in the model proved to be a significant task that our team initially
+        thought would be trivial (classic!). We explored multiple data sources and initially planned to use
+        <strong>Fitbit time series health data</strong> to predict another health metric. Specifically, we wanted to use Fitbit data
+        (steps, calories, intensity) to predict total sleep minutes for various individuals.
+    </p>
+    <p>
+        However, this dataset ended up being difficult to format for use in the functional regression libraries we were testing.
+        Since this proved challenging, we decided to pivot and explore a different data source.
+    </p>
+
+    <h3>Synthetic Data</h3>
+    <p>
+        Inspired by other project teams using synthetic data generated with GenAI tools, we decided to explore this approach as well.
+        We saw it as a good starting point, since synthetic data tends to be well-formatted and easy to work with.
+        The idea was that once we confirmed the model worked with synthetic data, we could format the real data similarly.
+    </p>
+    <p>
+        We generated <strong>synthetic San Francisco weather data</strong> (daily precipitation and daily average temperatures)
+        spanning five years to help configure the model, using <strong>ChatGPT</strong> for data generation.
+    </p>
+
+    <h3>Final Data from CIMIS</h3>
+    <p>
+        While one teammate was working on getting the model to run with synthetic data, others were collecting real weather data.
+        We obtained weather data from the <strong>California Irrigation Management Information System (CIMIS)</strong>, part of the
+        California Department of Water Resources. One of our teammates had previously worked with this dataset as an energy consultant,
+        which helped streamline our data collection process.
+    </p>
+
+    <h3>API vs. Manually Downloading CSV Files</h3>
+    <p>
+        The CIMIS website provides a convenient user interface for manually downloading CSV files for various weather stations across California.
+        Initially, we used this manual approach to download about five datasets. Eventually, we looked into automating data collection using the CIMIS API.
+    </p>
+    <p>
+        While experimenting with the API in a Python Notebook, we discovered a <strong>1750-row limit per API call</strong>,
+        which was insufficient to cover five full years of data. This would require additional work to loop through multiple calls to collect everything.
+        For this project, manual downloading was more practical, but for larger-scale research,
+        automating data collection with the API would be far more efficient.
+    </p>
+    <section id="cimis">
+    <h2>Example Screenshot</h2>
+    <img src="cimis.png" alt="Screenshot of data source" style="max-width:100%; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+    </section>
+</section>
 
     <h3>Ideas for Interactive Illustration</h3>
     <ul>
